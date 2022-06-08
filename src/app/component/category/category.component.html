@@ -1,0 +1,19 @@
+<ul class="list-group">
+  <strong class="btn btn-dark">Kategoriler</strong>
+  <div class="">
+    <input
+      type="text"
+      [(ngModel)]="filterText"
+      class="form-control"
+      id="filterText"
+      placeholder="Kategori ismi giriniz."
+    />
+  </div>
+  <li
+    routerLink="/clothes/category/{{ category.categoryId }}"
+    *ngFor="let category of categories |filterCategory:filterText"
+    class="list-group-item"
+  >
+    {{ category.categoryName }}
+  </li>
+</ul>

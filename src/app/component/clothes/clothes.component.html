@@ -1,0 +1,199 @@
+<div class="shadow-sm p-2 mb-2 bg-body rounded">
+  <div class="container">
+    <div class="container">
+      <div class="container">
+        <div class="container mx-1">
+          <div
+            id="carouselExampleCaptions"
+            class="carousel slide"
+            data-bs-ride="false"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  src="https://localhost:44347/images/3642642f-1ce6-4c9e-9cf4-7083a9788fe5.png"
+                  width="1050px"
+                  height="450px"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="https://localhost:44347/images/8fb4a36f-8954-46f6-b831-67b67bb7e719.jpg"
+                  width="1050px"
+                  height="450px"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="https://localhost:44347/images/bf7cd74a-6958-4441-ab82-40832012b6a5.png"
+                  width="1050px"
+                  height="450px"
+                />
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="shadow p-3 mb-5 bg-body rounded mt-3">
+  <div class="container">
+    <div class="text-center">
+      <h4 href="#" class="text-muted fst-italic fw-normal">
+        Ala Butik Online Kadın Giyim Mağazası
+      </h4>
+      <br />
+      <p style="text-align: center" class="text-muted">
+        2022 yılının en özel kadın giyim modelleri her zevke uygun ürün
+        çeşitliliği ile sizleri bekliyor. Mağaza üzerinde yer alan seçkin elbise
+        modelleriyle tarzınızı öne çıkabilirsiniz.
+      </p>
+      <p style="text-align: center" class="text-muted">
+        Kadın giyim koleksiyonundaki yeni sezon ürünler kombinlerinizin çok özel
+        hale gelmesini sağlıyor. Her sezonda giyilebilen kadın elbise modelleri
+        bayanların havasını baştan aşağı değiştirebiliyor. Farklı tasarımları
+        ile her kadının beğenisini kazanan bu modeller geniş kullanım alanları
+        sayesinde gardıropların vazgeçilmezleri arasında yerini almayı başardı.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card-body">
+    <div class="row mx-5">
+      <div class="col-md-1 mx-5"></div>
+      <div class="form-group col-md-2">
+        <select
+          [(ngModel)]="colorId"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option selected value="0">Renk</option>
+          <option *ngFor="let color of colors" value="{{ color.colorId }}">
+            {{ color.colorName }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2">
+        <select
+          [(ngModel)]="categoryId"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option selected value="0">Kategori</option>
+          <option
+            *ngFor="let category of categories"
+            value="{{ category.categoryId }}"
+          >
+            {{ category.categoryName }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <button
+          (click)="getClothesDetailByCategoryAndColorId(categoryId, colorId)"
+          type="button"
+          class="btn btn-dark mx-1"
+        >
+          Filtrele
+        </button>
+        <button (click)="reset()" type="button" class="btn btn-dark">
+          Temizle
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-dark mx-1"
+          (click)="getClothesDetails()"
+          routerLink="/clothesDetails"
+        >
+          Tüm Ürünler
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="shadow p-3 mb-5 bg-body rounded">
+    <div class="row">
+      <div
+        class="card-group mt-1 col-md-10"
+        style="width: 17rem"
+        *ngFor="let clothes of clothesDetails"
+      >
+        <img
+          [src]="imageUrl + clothes.imagePath[0]"
+          class="card-img-top col-md-10"
+        />
+
+        <div class="card-body">
+          <h6 class="card-title fst-italic">{{ clothes.clothesName }}</h6>
+          <p class="card-text text-muted">
+            Sepette İndirimli <br />
+            Fiyatı : {{ clothes.unitPrice | currency: "₺" }}
+          </p>
+
+          <div class="d-grid gap-2">
+            <button
+              class="btn btn-dark"
+              type="button"
+              routerLink="/clothesImages/clothes/{{ clothes.clothesId }}"
+            >
+              Detay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

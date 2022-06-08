@@ -1,0 +1,272 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-3">
+      <div
+        class="card"
+        style="max-width: 1500px"
+        *ngFor="let cartItem of cartItems"
+      >
+        <div class="row g-0">
+          <div class="col-md-3">
+            <img
+              [src]="imageUrl + cartItem.clothes.imagePath[0]"
+              width="130px"
+              height="170px"
+            />
+          </div>
+          <div class="col-md-5">
+            <div class="card-body">
+              <h6>Ala Butik</h6>
+              <p class="card-text">
+                Ürün : {{ cartItem.clothes.clothesName }}<br />
+                Renk : {{ cartItem.clothes.colorName }}<br />
+                Adet : {{ cartItem.quantity }}<br />
+              </p>
+              <h6 class="text-muted fst-italic fw-light">
+                Tahmini kargoya teslim süresi : 4 gün
+              </h6>
+            </div>
+          </div>
+          <div class="col-md-2 mt-5">
+            <p class="card-text text-danger fw-bold">
+              {{
+                cartItem.clothes.unitPrice * cartItem.quantity | currency: "₺"
+              }}
+            </p>
+          </div>
+          <div class="col-md-2 float-end mt-5">
+            <button
+              (click)="removeFromCart(cartItem.clothes)"
+              class="btn btn-fill btn-danger"
+            >
+              Ürünü sil
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div *ngIf="cartItems.length > 0" class="col-md-4">
+      <p class="card-text"></p>
+      <ul class="list-group">
+        <button
+          class="btn btn-fill btn-dark mt-2"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Sepeti Onayla</button
+        ><br />
+        <li class="list-group-item border border-light">
+          <h5 class="card-title">Sipariş Özeti</h5>
+          <small>
+            <span class="float-start">Sepetinizdeki ürünlerin miktarı : </span>
+          </small>
+          <span class="float-end text-danger">
+            <strong>{{ cartItems.length }}</strong>
+          </span>
+        </li>
+        <li class="list-group-item border border-light">
+          <small>
+            <span class="float-start">Sepetinizdeki ürünlerin tutarı : </span>
+          </small>
+          <span class="float-end text-danger">
+            <strong>{{ calculateTotal() | currency: "":"" }}₺</strong>
+          </span>
+        </li>
+        <button class="btn btn-outline-dark">İNDİRİM KODU GİR</button>
+        <button
+          class="btn btn-fill btn-dark mt-2"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Sepeti Onayla
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Bilgilerinizi Kaydedin
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+
+              <div class="modal-body">
+                <form [formGroup]="customerAddForm">
+                  <div class="mb-1">
+                    <label for="name">Ad Soyad</label>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="name"
+                        formControlName="name"
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="mb-1">
+                    <label for="telephone">Telefon</label>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="telephone"
+                        formControlName="telephone"
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="mb-1">
+                    <label for="address">Adres</label>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="address"
+                        formControlName="address"
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="mb-1">
+                    <label for="city">İl</label>
+                    <div class="form-group">
+                      <select
+                        id="city"
+                        formControlName="city"
+                        class="form-control"
+                      >
+                        <option>Adana</option>
+                        <option>Adıyaman</option>
+                        <option>Afyon</option>
+                        <option>Ağrı</option>
+                        <option>Amasya</option>
+                        <option>Ankara</option>
+                        <option>Antalya</option>
+                        <option>Artvin</option>
+                        <option>Aydın</option>
+                        <option>Balıkesir</option>
+                        <option>Bilecik</option>
+                        <option>Bingöl</option>
+                        <option>Bitlis</option>
+                        <option>Bolu</option>
+                        <option>Burdur</option>
+                        <option>Bursa</option>
+                        <option>Çanakkale</option>
+                        <option>Çankırı</option>
+                        <option>Çorum</option>
+                        <option>Denizli</option>
+                        <option>Diyarbakır</option>
+                        <option>Elazığ</option>
+                        <option>Elazığ</option>
+                        <option>Elazığ</option>
+                        <option>Erzurum</option>
+                        <option>Eskişehir</option>
+                        <option>GaziAntep</option>
+                        <option>Giresun</option>
+                        <option>Gümüşhane</option>
+                        <option>Hakkari</option>
+                        <option>Hatay</option>
+                        <option>Isparta</option>
+                        <option>Mersin</option>
+                        <option>İstanbul</option>
+                        <option>İzmir</option>
+                        <option>Kars</option>
+                        <option>Kastamonu</option>
+                        <option>Kayseri</option>
+                        <option>Kırklareli</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="mb-1">
+                    <label for="district">İlçe</label>
+
+                    <div class="form-group">
+                      <select
+                        id="district"
+                        formControlName="district"
+                        class="form-control"
+                      >
+                        <option>Akyurt</option>
+                        <option>Altındağ</option>
+                        <option>Ayaş</option>
+                        <option>Bala</option>
+                        <option>Beypazarı</option>
+                        <option>Çamlıdere</option>
+                        <option>Çankaya</option>
+                        <option>Çubuk</option>
+                        <option>Elmadağ</option>
+                        <option>Etimesgut</option>
+                        <option>Evren</option>
+                        <option>Gölbaşı</option>
+                        <option>Güdül</option>
+                        <option>Haymana</option>
+                        <option>Kahramankazan</option>
+                        <option>Kalecik</option>
+                        <option>Keçiören</option>
+                        <option>Kızılcahamam</option>
+                        <option>Mamak</option>
+                        <option>Nallıhan</option>
+                        <option>Polatlı</option>
+                        <option>Pursaklar</option>
+                        <option>Sincan</option>
+                        <option>Şereflikoçhisar</option>
+                        <option>Yenimahalle</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-outline-dark"
+                  data-bs-dismiss="modal"
+                >
+                  Kapat
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-dark"
+                  (click)="add()"
+                  data-bs-dismiss="modal"
+                >
+                  Kaydet ve Devam Et
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ul>
+      <br />
+    </div>
+  </div>
+
+  <div *ngIf="!cartItems.length" class="col-md-12">
+    <div class="shadow p-3 mb-5 bg-body rounded">
+      <h4 href="admin-clothes" class="nav-link link-dark fw-bold">
+        Sepetinizde ürün bulunmamaktadır.
+        <button (click)="beginShopping()" class="btn btn-dark float-end btn-lg">
+          Alışverişe başla!
+        </button>
+      </h4>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,219 @@
+<div class="container">
+  <div class="shadow-sm p-3 mb-5 bg-body rounded">
+    <div class="row">
+      <div class="col-md-8">
+        <h3 class="card-title text-center mt-2">Ödeme Detayı</h3>
+
+        <div class="card text-center">
+          <div class="card-header text-muted">Kredi / Banka Kartı</div>
+          <div class="card-body">
+            <img
+              src="https://localhost:44347/images/30fa3fa0-8e95-40d4-9297-f209348c5e71.png"
+              class="card-img-top"
+              alt="..."
+            />
+          </div>
+          <div class="card-footer text-muted">2 gün önce güncellendi.</div>
+        </div>
+        <div class="card-body">
+          <h6 class="card-title">Kredi Kartı İle Ödeme</h6>
+          <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-3 col-form-label text-muted"
+              >Kart No</label
+            >
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputNumber" />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-3 col-form-label text-muted"
+              >Kart Üzerindeki İsim
+            </label>
+            <div class="col-sm-9 float-end">
+              <input type="text" class="form-control" id="inputNumber" />
+            </div>
+          </div>
+
+          <div class="mb-2 row">
+            <div class="col-md-3">
+              <label class="col-form-label text-muted">Tarih Bilgileri</label>
+            </div>
+            <div class="col-md-3">
+              <select
+                class="form-select text-muted"
+                aria-label="Default select example"
+              >
+                <option selected>Ay seçiniz</option>
+                <option [ngValue]="1">January</option>
+                <option [ngValue]="2">February</option>
+                <option [ngValue]="3">March</option>
+                <option [ngValue]="4">April</option>
+                <option [ngValue]="5">May</option>
+                <option [ngValue]="6">June</option>
+                <option [ngValue]="7">July</option>
+                <option [ngValue]="8">August</option>
+                <option [ngValue]="9">September</option>
+                <option [ngValue]="10">October</option>
+                <option [ngValue]="11">November</option>
+                <option [ngValue]="12">December</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select
+                class="form-select text-muted"
+                aria-label="Default select example"
+              >
+                <option selected>Yıl seçiniz</option>
+                <option [ngValue]="1">2022</option>
+                <option [ngValue]="2">2023</option>
+                <option [ngValue]="3">2024</option>
+                <option [ngValue]="4">2025</option>
+                <option [ngValue]="5">2026</option>
+                <option [ngValue]="6">2027</option>
+                <option [ngValue]="7">2028</option>
+                <option [ngValue]="8">2029</option>
+                <option [ngValue]="9">2030</option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="CVV"
+                id="inputNumber"
+              />
+            </div>
+          </div>
+
+          <div class="mb-2 row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+              <div class="form-check">
+                <label class="form-check-label text-muted" for="flexCheckDefault">
+                  3D Kullanmak İstiyorum.
+                </label>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-2 row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+              <div class="form-check">
+                <label class="form-check-label text-muted" for="flexCheckDefault">
+                  Kredi kartı bilgilerimin MasterPass ile kaydedilmesini onaylıyorum.
+                </label>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="mb-2 row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+              <button class="btn btn-dark" routerLink="/cart-summary-detail">
+                Sepete Dön
+              </button>
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn-dark mx-1"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Öde
+                <span > ( {{calculateTotalWithCargo() | currency: "":"" }}₺ )</span>
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Ödeme Onayı
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <h5>Başarılı</h5>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Kapat
+                      </button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mt-5">
+        <div class="card">
+          <li class="list-group-item border border-light">
+            <h5 class="card-title">Sipariş Özeti</h5>
+          </li>
+          <li class="list-group-item border border-light">
+            <small>
+              <span class="float-start fs-6"
+                >Sepetinizdeki ürünlerin tutarı :
+              </span>
+            </small>
+            <span class="float-end text-danger fs-6">
+              <strong>{{ calculateTotal() | currency: "":"" }}₺</strong>
+            </span>
+            <br />
+            <small>
+              <span class="float-start fs-6">Kargo tutarı : </span>
+            </small>
+            <span class="float-end text-danger fs-6">
+              <strong>{{ 10 | currency: "":"" }}₺</strong>
+            </span>
+
+            <br />
+            <small>
+              <span class="float-start fs-6">Toplam tutar : </span>
+            </small>
+            <span class="float-end text-danger fs-6">
+              <strong>{{ calculateTotalWithCargo() | currency: "":"" }}₺</strong>
+            </span>
+            <br />
+          </li>
+        </div>
+      </div>
+  </div>
+
+  </div>
+
+</div>

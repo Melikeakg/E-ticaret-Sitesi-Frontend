@@ -1,0 +1,106 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand text-muted fst-italic" href="admin" *ngIf="isAdmin()"
+      >Ala Butik</a
+    >
+
+    <a class="navbar-brand text-muted fst-italic" href="#" *ngIf="!isAdmin()"
+      >Ala Butik</a
+    >
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      *ngIf="!isAdmin()"
+      class="collapse navbar-collapse"
+      id="navbarSupportedContent"
+    >
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <app-cart-summary></app-cart-summary>
+      </ul>
+
+      <button
+        type="button"
+        class="btn btn-light text-muted"
+        *ngIf="!isAuthenticated()"
+        (click)="login()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-person-circle"
+          viewBox="0 0 16 16"
+        >
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+          <path
+            fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+          ></path>
+        </svg>
+        Giriş yap/Üye ol
+      </button>
+
+      <div class="dropdown text-muted" *ngIf="isAuthenticated()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+        </svg>
+        <button
+          class="btn btn-light dropdown-toggle text-muted"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+
+        >
+          Hesabım
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a routerLink="/profile" class="btn dropdown-item">Profilim</a></li>
+          <li><a class="btn dropdown-item">Siparişlerim</a></li>
+          <li><a (click)="goToCart()" class="btn dropdown-item">Sepetim</a></li>
+          <li><a class="btn dropdown-item">Şifremi Değiştir</a></li>
+          <li><a class="btn dropdown-item" (click)="logOut()">Çıkış Yap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="dropdown" *ngIf="isAdmin()">
+      <button
+        class="btn btn-light dropdown-toggle text-muted"
+        type="button"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Yönetim
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+        <li>
+          <a routerLink="/admin-color" class="btn dropdown-item">Renk Yönetimi</a>
+        </li>
+        <li>
+          <a routerLink="/admin-category" class="btn dropdown-item">Kategori Yönetimi</a>
+        </li>
+        <li>
+          <a routerLink="/customer" class="btn dropdown-item">Müşteriler</a>
+        </li>
+        <li>
+          <a (click)="goToCart()" class="btn dropdown-item">Siparişler</a>
+        </li>
+        <li><a class="btn dropdown-item" (click)="logOut()">Çıkış Yap</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="content">
+    <div class="mx-5">
+      <div class="mx-5">
+              <div class="col-md-12">
+                <div class="shadow p-3 mb-5 bg-body rounded">
+                  <div class="clothesUpdate">
+                    <div class="card-header bg-body">
+                      <h4 class="title text-center">Kıyafet Bilgilerini Güncelle</h4>
+                      <hr>
+                      <div class="card-body bg-body">
+                        <form [formGroup]="clothesUpdateForm">
+                          <div class="mb-2">
+                            <label for="clothesId">Kıyafet seçiniz</label>
+                            <select
+                              class="form-control"
+                              id="clothesId"
+                              formControlName="clothesId"
+                            >
+                              <option
+                                *ngFor="let clothes of clothess"
+                                [ngValue]="clothes.clothesId"
+                              >
+                                {{ clothes.clothesName }}
+                              </option>
+                            </select>
+                          </div>
+
+                          <div class="mb-1">
+                            <label for="clothesName">Kıyafet Adı</label>
+                            <div class="form-group">
+                              <input
+                                type="text"
+                                id="clothesName"
+                                formControlName="clothesName"
+                                class="form-control"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="mb-2">
+                            <label for="categoryId">Kategori</label>
+                            <select
+                              class="form-control"
+                              id="categoryId"
+                              formControlName="categoryId"
+                            >
+                              <option
+                                *ngFor="let category of categories"
+                                [ngValue]="category.categoryId"
+                              >
+                                {{ category.categoryName }}
+                              </option>
+                            </select>
+                          </div>
+
+                          <div class="mb-1">
+                            <label for="colorId">Renk</label>
+                            <div class="form-group">
+                              <select
+                                id="colorId"
+                                formControlName="colorId"
+                                class="form-control"
+                              >
+                                <option
+                                  *ngFor="let color of colors"
+                                  [ngValue]="color.colorId"
+                                >
+                                  {{ color.colorName }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="mb-1">
+                            <label for="unitsInStock">Stok adedi</label>
+                            <div class="form-group">
+                              <input
+                                type="number"
+                                id="unitsInStock"
+                                formControlName="unitsInStock"
+                                class="form-control"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="mb-1">
+                            <label for="unitPrice">Fiyat</label>
+                            <div class="form-group">
+                              <input
+                                type="number"
+                                id="unitPrice"
+                                formControlName="unitPrice"
+                                class="form-control"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="mb-1">
+                            <label for="description">Açıklama</label>
+                            <div class="form-group">
+                              <input
+                                type="text"
+                                id="description"
+                                formControlName="description"
+                                class="form-control"
+                              />
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="card-footer bg-body">
+                        <button class="btn btn-fill btn-dark" (click)="update()">
+                          Güncelle
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+

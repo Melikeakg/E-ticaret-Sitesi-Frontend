@@ -1,0 +1,81 @@
+<div class="shadow-sm p-3 mb-5 bg-body rounded">
+ <div class="container mt-2">
+  <div class="row" *ngFor="let clothesDetail of clothesDetails">
+    <div class="card col-md-" style="max-width: 1024px">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <carousel>
+            <slide>
+              <img [src]="imageUrl + clothesDetail.imagePath[0]" alt="first slide" style="display: block; width: 100%;">
+            </slide>
+            <slide >
+              <img [src]="imageUrl + clothesDetail.imagePath[1]" alt="second slide" style="display: block; width: 100%;">
+            </slide>
+          </carousel>
+        </div>
+        <div class="col-md-7">
+          <div class="card-body">
+            <h5 class="card-title">Ürün Özellikleri</h5>
+            <p class="card-text text-muted">
+              {{ clothesDetail.description }}
+            </p>
+
+            <p class="card-text text-muted">
+              Ürün : {{ clothesDetail.clothesName }} <br />
+              Kategori : {{ clothesDetail.categoryName }}<br />
+              Renk : {{ clothesDetail.colorName }}<br />
+              Fiyat : {{ clothesDetail.unitPrice | currency: "₺" }}
+            </p>
+
+            <div class="d-grid gap-2 col-4 mt-1">
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Basic checkbox toggle button group"
+              >
+                <input
+                  type="checkbox"
+                  class="btn-check"
+                  id="btncheck1"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-dark mx-1" for="btncheck1">S</label>
+
+                <input
+                  type="checkbox"
+                  class="btn-check"
+                  id="btncheck2"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-dark" for="btncheck2">M</label>
+
+                <input
+                  type="checkbox"
+                  class="btn-check"
+                  id="btncheck3"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-dark mx-1" for="btncheck3">L</label>
+              </div>
+              <button
+                (click)="addToCart(clothesDetail)"
+                type="button"
+                class="btn btn-dark"
+              >
+                Sepete Ekle
+              </button>
+            </div>
+
+
+            <p class="card-text">
+              <small class="text-muted">3 dakika önce güncellendi.</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>

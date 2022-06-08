@@ -1,0 +1,4 @@
+<button type="button" class="btn btn-light text-muted" (click)="goToCart()">
+  Sepetim
+  <span *ngIf="cartItems.length > 0"> ({{ cartItems.length }}) </span>
+</button>

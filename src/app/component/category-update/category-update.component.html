@@ -1,0 +1,51 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="categoryUpdate">
+      <div class="card-header">
+        <h5 title="Kategori bilgilerini güncelle-sil">
+          <div class="card-body">
+            <form [formGroup]="categoryUpdateForm">
+              <div class="mb-1">
+                <label for="categoryId">Kategori</label>
+                <div class="form-group">
+                  <select
+                    id="categoryId"
+                    formControlName="categoryId"
+                    class="form-control"
+                  >
+                    <option
+                      *ngFor="let category of categories"
+                      [ngValue]="category.categoryId"
+                    >
+                      {{ category.categoryName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-1">
+                <label for="categoryName">Kategori adı</label>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="categoryName"
+                    formControlName="categoryName"
+                    class="form-control"
+                    placeholder="Kategori adı yazınız."
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="card-footer">
+            <button class="btn btn-fill btn-dark" (click)="update()">
+              Güncelle
+            </button>
+            <button class="btn btn-fill btn-dark mx-3" (click)="delete()">Sil</button>
+          </div>
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>

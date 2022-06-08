@@ -1,0 +1,20 @@
+<ul class="list-group">
+  <strong  class="btn btn-dark">Renkler</strong>
+
+  <div class="">
+   <input
+   type="text"
+   [(ngModel)]="filterText"
+   class="form-control"
+   id="filterText"
+   placeholder="Renk ismi giriniz."
+   >
+  </div>
+  <li
+  routerLink = "/clothes/color/{{color.colorId}}"
+  *ngFor="let color of colors |filterColor:filterText"
+  class="list-group-item">
+
+    {{ color.colorName }}
+  </li>
+</ul>
